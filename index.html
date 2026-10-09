@@ -42,20 +42,9 @@
         .animate-shake {
             animation: shake 0.4s ease-in-out;
         }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f3e8ff;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #d8b4fe;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #c084fc;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f3e8ff; }
+        ::-webkit-scrollbar-thumb { background: #d8b4fe; border-radius: 4px; }
     </style>
 </head>
 <body class="relative overflow-x-hidden flex flex-col min-h-screen">
@@ -64,10 +53,9 @@
         <i class="fa-solid fa-heart floating-heart" style="left: 10%; animation-duration: 7s; font-size: 24px;"></i>
         <i class="fa-solid fa-heart floating-heart" style="left: 30%; animation-duration: 11s; font-size: 18px; animation-delay: 2s;"></i>
         <i class="fa-solid fa-heart floating-heart" style="left: 60%; animation-duration: 9s; font-size: 30px; animation-delay: 1s;"></i>
-        <i class="fa-solid fa-heart floating-heart" style="left: 80%; animation-duration: 13s; font-size: 22px; animation-delay: 3s;"></i>
-        <i class="fa-solid fa-heart floating-heart" style="left: 45%; animation-duration: 8s; font-size: 16px; animation-delay: 4s;"></i>
     </div>
 
+    <!-- Site Lock Modal -->
     <div id="site-lock-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-purple-950/40 backdrop-blur-md p-4 transition-opacity duration-500">
         <div class="glass-card rounded-3xl p-8 max-w-md w-full text-center shadow-2xl relative">
             <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl shadow-inner">
@@ -76,7 +64,6 @@
             <h2 class="text-2xl font-bold text-purple-900 mb-2">مرحباً بكِ في عالمنا يا حبوبي 💜</h2>
             <p class="text-purple-700/80 text-sm mb-6">الرجاء إدخال كلمة المرور الخاصة بالموقع للدخول:</p>
             
-            <!-- Password input with eye toggle -->
             <div class="relative mb-4">
                 <input type="password" id="site-password-input" placeholder="اكتب الباسورد هنا..." 
                     class="w-full px-4 py-3 pl-12 rounded-2xl border border-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-400 text-center text-lg bg-white/70 tracking-widest text-purple-900">
@@ -85,7 +72,7 @@
                 </button>
             </div>
             
-            <button onclick="unlockSite()" class="w-full py-3 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-2xl font-semibold shadow-lg shadow-purple-500/30 hover:opacity-95 transition-all transform active:scale-95">
+            <button onclick="unlockSite()" class="w-full py-3 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-2xl font-semibold shadow-lg shadow-purple-500/30 hover:opacity-95 transition-all">
                 دخول بحب 🤍
             </button>
             <p id="site-error-msg" class="text-rose-500 text-sm mt-3 hidden font-medium">فكر تاني يا حبيبي 🌸</p>
@@ -94,7 +81,6 @@
 
     <div id="main-content" class="opacity-0 transition-opacity duration-700 pointer-events-none relative z-10 max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
         
-        <!-- Header Banner -->
         <header class="text-center mb-10 pt-4">
             <div class="inline-block p-3 bg-purple-200/50 rounded-full text-purple-700 mb-3 shadow-sm animate-pulse">
                 <i class="fa-solid fa-hand-holding-heart text-3xl"></i>
@@ -106,101 +92,75 @@
         <!-- Counters Grid Section -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             
-            <!-- Counter 1: Kisses -->
+            <!-- Counter 1 -->
             <div class="glass-card rounded-3xl p-6 flex flex-col items-center text-center relative overflow-hidden group">
-                <div class="absolute top-3 left-3 text-purple-300 group-hover:text-purple-500 transition-colors">
-                    <i id="lock-icon-1" class="fa-solid fa-lock text-lg"></i>
-                </div>
-                <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-sm">
-                    <i class="fa-solid fa-kiss-wink-heart"></i>
-                </div>
+                <div class="absolute top-3 left-3 text-purple-300"><i id="lock-icon-1" class="fa-solid fa-lock text-lg"></i></div>
+                <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-sm"><i class="fa-solid fa-kiss-wink-heart"></i></div>
                 <h3 class="font-bold text-purple-900 text-lg mb-1">عدد البوسات بعد الجواز</h3>
                 <div id="count-display-1" class="text-4xl font-black text-purple-700 my-3">2616</div>
-                
-                <!-- Unlock Section with password input and eye toggle -->
                 <div class="w-full mt-auto pt-4 border-t border-purple-100">
                     <div id="unlock-area-1" class="space-y-2">
                         <div class="relative">
-                            <input type="password" id="pass-1" placeholder="باسورد التعديل..." class="w-full px-3 py-2 pl-10 text-sm rounded-xl border border-purple-200 focus:outline-none focus:ring-1 focus:ring-purple-400 text-center bg-white/60">
-                            <button type="button" onclick="togglePasswordVisibility('pass-1', 'eye-icon-1')" class="absolute left-3 top-1/2 -translate-y-1/2 text-purple-400 hover:text-purple-700 transition-colors p-1 focus:outline-none">
-                                <i id="eye-icon-1" class="fa-solid fa-eye-slash text-sm"></i>
-                            </button>
+                            <input type="password" id="pass-1" placeholder="باسورد التعديل..." class="w-full px-3 py-2 pl-10 text-sm rounded-xl border border-purple-200 text-center bg-white/60">
+                            <button type="button" onclick="togglePasswordVisibility('pass-1', 'eye-icon-1')" class="absolute left-3 top-1/2 -translate-y-1/2 text-purple-400"><i id="eye-icon-1" class="fa-solid fa-eye-slash text-sm"></i></button>
                         </div>
-                        <button onclick="verifyCounterPassword(1)" class="w-full py-2 bg-purple-600 text-white rounded-xl text-xs font-semibold hover:bg-purple-700 transition shadow">فتح القفل</button>
+                        <button onclick="verifyCounterPassword(1)" class="w-full py-2 bg-purple-600 text-white rounded-xl text-xs font-semibold shadow">فتح القفل</button>
                     </div>
-                    <!-- Controls (+/-) Hidden by default -->
                     <div id="controls-1" class="hidden flex items-center justify-center gap-4">
-                        <button onclick="adjustCount(1, -1)" class="w-10 h-10 bg-rose-100 text-rose-600 rounded-xl font-bold text-xl hover:bg-rose-200 transition flex items-center justify-center shadow">-</button>
-                        <span class="text-xs text-purple-500 font-medium">مفتوح للتعديل ✨</span>
-                        <button onclick="adjustCount(1, 1)" class="w-10 h-10 bg-purple-100 text-purple-700 rounded-xl font-bold text-xl hover:bg-purple-200 transition flex items-center justify-center shadow">+</button>
+                        <button onclick="adjustCount(1, -1)" class="w-10 h-10 bg-rose-100 text-rose-600 rounded-xl font-bold text-xl">-</button>
+                        <span class="text-xs text-purple-500">مفتوح ✨</span>
+                        <button onclick="adjustCount(1, 1)" class="w-10 h-10 bg-purple-100 text-purple-700 rounded-xl font-bold text-xl">+</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Counter 2: Hugs -->
+            <!-- Counter 2 -->
             <div class="glass-card rounded-3xl p-6 flex flex-col items-center text-center relative overflow-hidden group">
-                <div class="absolute top-3 left-3 text-purple-300 group-hover:text-purple-500 transition-colors">
-                    <i id="lock-icon-2" class="fa-solid fa-lock text-lg"></i>
-                </div>
-                <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-sm">
-                    <i class="fa-solid fa-people-group"></i>
-                </div>
+                <div class="absolute top-3 left-3 text-purple-300"><i id="lock-icon-2" class="fa-solid fa-lock text-lg"></i></div>
+                <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-sm"><i class="fa-solid fa-people-group"></i></div>
                 <h3 class="font-bold text-purple-900 text-lg mb-1">عدد الأحضان بعد الجواز</h3>
                 <div id="count-display-2" class="text-4xl font-black text-purple-700 my-3">266</div>
-                
-                <!-- Unlock Section with password input and eye toggle -->
                 <div class="w-full mt-auto pt-4 border-t border-purple-100">
                     <div id="unlock-area-2" class="space-y-2">
                         <div class="relative">
-                            <input type="password" id="pass-2" placeholder="باسورد التعديل..." class="w-full px-3 py-2 pl-10 text-sm rounded-xl border border-purple-200 focus:outline-none focus:ring-1 focus:ring-purple-400 text-center bg-white/60">
-                            <button type="button" onclick="togglePasswordVisibility('pass-2', 'eye-icon-2')" class="absolute left-3 top-1/2 -translate-y-1/2 text-purple-400 hover:text-purple-700 transition-colors p-1 focus:outline-none">
-                                <i id="eye-icon-2" class="fa-solid fa-eye-slash text-sm"></i>
-                            </button>
+                            <input type="password" id="pass-2" placeholder="باسورد التعديل..." class="w-full px-3 py-2 pl-10 text-sm rounded-xl border border-purple-200 text-center bg-white/60">
+                            <button type="button" onclick="togglePasswordVisibility('pass-2', 'eye-icon-2')" class="absolute left-3 top-1/2 -translate-y-1/2 text-purple-400"><i id="eye-icon-2" class="fa-solid fa-eye-slash text-sm"></i></button>
                         </div>
-                        <button onclick="verifyCounterPassword(2)" class="w-full py-2 bg-purple-600 text-white rounded-xl text-xs font-semibold hover:bg-purple-700 transition shadow">فتح القفل</button>
+                        <button onclick="verifyCounterPassword(2)" class="w-full py-2 bg-purple-600 text-white rounded-xl text-xs font-semibold shadow">فتح القفل</button>
                     </div>
-                    <!-- Controls (+/-) Hidden by default -->
                     <div id="controls-2" class="hidden flex items-center justify-center gap-4">
-                        <button onclick="adjustCount(2, -1)" class="w-10 h-10 bg-rose-100 text-rose-600 rounded-xl font-bold text-xl hover:bg-rose-200 transition flex items-center justify-center shadow">-</button>
-                        <span class="text-xs text-purple-500 font-medium">مفتوح للتعديل ✨</span>
-                        <button onclick="adjustCount(2, 1)" class="w-10 h-10 bg-purple-100 text-purple-700 rounded-xl font-bold text-xl hover:bg-purple-200 transition flex items-center justify-center shadow">+</button>
+                        <button onclick="adjustCount(2, -1)" class="w-10 h-10 bg-rose-100 text-rose-600 rounded-xl font-bold text-xl">-</button>
+                        <span class="text-xs text-purple-500">مفتوح ✨</span>
+                        <button onclick="adjustCount(2, 1)" class="w-10 h-10 bg-purple-100 text-purple-700 rounded-xl font-bold text-xl">+</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Counter 3: Miss You Times -->
+            <!-- Counter 3 -->
             <div class="glass-card rounded-3xl p-6 flex flex-col items-center text-center relative overflow-hidden group">
-                <div class="absolute top-3 left-3 text-purple-300 group-hover:text-purple-500 transition-colors">
-                    <i id="lock-icon-3" class="fa-solid fa-lock text-lg"></i>
-                </div>
-                <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-sm">
-                    <i class="fa-solid fa-heart-pulse"></i>
-                </div>
+                <div class="absolute top-3 left-3 text-purple-300"><i id="lock-icon-3" class="fa-solid fa-lock text-lg"></i></div>
+                <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mb-4 shadow-sm"><i class="fa-solid fa-heart-pulse"></i></div>
                 <h3 class="font-bold text-purple-900 text-lg mb-1">عدد المرات اللي بتوحشني فيها</h3>
                 <div id="count-display-3" class="text-4xl font-black text-purple-700 my-3">66234590</div>
-                
-                <!-- Unlock Section with password input and eye toggle -->
                 <div class="w-full mt-auto pt-4 border-t border-purple-100">
                     <div id="unlock-area-3" class="space-y-2">
                         <div class="relative">
-                            <input type="password" id="pass-3" placeholder="باسورد التعديل..." class="w-full px-3 py-2 pl-10 text-sm rounded-xl border border-purple-200 focus:outline-none focus:ring-1 focus:ring-purple-400 text-center bg-white/60">
-                            <button type="button" onclick="togglePasswordVisibility('pass-3', 'eye-icon-3')" class="absolute left-3 top-1/2 -translate-y-1/2 text-purple-400 hover:text-purple-700 transition-colors p-1 focus:outline-none">
-                                <i id="eye-icon-3" class="fa-solid fa-eye-slash text-sm"></i>
-                            </button>
+                            <input type="password" id="pass-3" placeholder="باسورد التعديل..." class="w-full px-3 py-2 pl-10 text-sm rounded-xl border border-purple-200 text-center bg-white/60">
+                            <button type="button" onclick="togglePasswordVisibility('pass-3', 'eye-icon-3')" class="absolute left-3 top-1/2 -translate-y-1/2 text-purple-400"><i id="eye-icon-3" class="fa-solid fa-eye-slash text-sm"></i></button>
                         </div>
-                        <button onclick="verifyCounterPassword(3)" class="w-full py-2 bg-purple-600 text-white rounded-xl text-xs font-semibold hover:bg-purple-700 transition shadow">فتح القفل</button>
+                        <button onclick="verifyCounterPassword(3)" class="w-full py-2 bg-purple-600 text-white rounded-xl text-xs font-semibold shadow">فتح القفل</button>
                     </div>
-                    <!-- Controls (+/-) Hidden by default -->
                     <div id="controls-3" class="hidden flex items-center justify-center gap-4">
-                        <button onclick="adjustCount(3, -1)" class="w-10 h-10 bg-rose-100 text-rose-600 rounded-xl font-bold text-xl hover:bg-rose-200 transition flex items-center justify-center shadow">-</button>
-                        <span class="text-xs text-purple-500 font-medium">مفتوح للتعديل ✨</span>
-                        <button onclick="adjustCount(3, 1)" class="w-10 h-10 bg-purple-100 text-purple-700 rounded-xl font-bold text-xl hover:bg-purple-200 transition flex items-center justify-center shadow">+</button>
+                        <button onclick="adjustCount(3, -1)" class="w-10 h-10 bg-rose-100 text-rose-600 rounded-xl font-bold text-xl">-</button>
+                        <span class="text-xs text-purple-500">مفتوح ✨</span>
+                        <button onclick="adjustCount(3, 1)" class="w-10 h-10 bg-purple-100 text-purple-700 rounded-xl font-bold text-xl">+</button>
                     </div>
                 </div>
             </div>
 
         </div>
 
+        <!-- Timers Section -->
         <section class="mb-12">
             <div class="text-center mb-8">
                 <div class="inline-block p-2 bg-purple-200/50 rounded-full text-purple-700 mb-2 shadow-sm">
@@ -210,185 +170,56 @@
                 <p class="text-purple-700/80 text-sm">تواريخ لن تُنسى.. في انتظار إن أنا أشوفك يا حبيبي، وحشتني</p>
             </div>
 
-            <!-- Timers stacked vertically (3 Timers ordered as requested) -->
             <div class="flex flex-col gap-6 max-w-2xl mx-auto">
-                
-                <!-- Timer 1: First Knowing / 25 February 2026 -->
-                <div class="glass-card rounded-3xl p-6 text-center shadow-md relative overflow-hidden flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-xl shadow-inner">
-                            <i class="fa-solid fa-seedling"></i>
-                        </div>
-                        <h3 class="font-bold text-purple-900 text-lg mb-1">المعرفة الأولى (لقاء الأرواح)</h3>
-                        <p class="text-purple-600/90 text-xs font-semibold mb-4">منذ يوم 25 فبراير 2026</p>
-                    </div>
-                    
+                <!-- Timer 1 -->
+                <div class="glass-card rounded-3xl p-6 text-center shadow-md">
+                    <h3 class="font-bold text-purple-900 text-lg mb-1">المعرفة الأولى (لقاء الأرواح)</h3>
+                    <p class="text-purple-600/90 text-xs font-semibold mb-4">منذ يوم 25 فبراير 2026</p>
                     <div class="grid grid-cols-4 gap-2 bg-white/60 p-3 rounded-2xl border border-purple-100">
-                        <div class="flex flex-col">
-                            <span id="days-1" class="text-xl font-black text-purple-900">0</span>
-                            <span class="text-[10px] text-purple-600 font-medium">يوم</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span id="hours-1" class="text-xl font-black text-purple-900">0</span>
-                            <span class="text-[10px] text-purple-600 font-medium">ساعة</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span id="minutes-1" class="text-xl font-black text-purple-900">0</span>
-                            <span class="text-[10px] text-purple-600 font-medium">دقيقة</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span id="seconds-1" class="text-xl font-black text-purple-900">0</span>
-                            <span class="text-[10px] text-purple-600 font-medium">ثانية</span>
-                        </div>
+                        <div class="flex flex-col"><span id="days-1" class="text-xl font-black text-purple-900">0</span><span class="text-[10px] text-purple-600">يوم</span></div>
+                        <div class="flex flex-col"><span id="hours-1" class="text-xl font-black text-purple-900">0</span><span class="text-[10px] text-purple-600">ساعة</span></div>
+                        <div class="flex flex-col"><span id="minutes-1" class="text-xl font-black text-purple-900">0</span><span class="text-[10px] text-purple-600">دقيقة</span></div>
+                        <div class="flex flex-col"><span id="seconds-1" class="text-xl font-black text-purple-900">0</span><span class="text-[10px] text-purple-600">ثانية</span></div>
                     </div>
-                    <div class="mt-3 text-[11px] text-purple-500 font-mono tracking-wider">
-                        وحدة أجزاء الثواني: <span id="ms-1" class="font-bold text-purple-700">000</span>
-                    </div>
+                    <div class="mt-3 text-[11px] text-purple-500 font-mono">أجزاء الثواني: <span id="ms-1" class="font-bold text-purple-700">000</span></div>
                 </div>
 
-                <!-- Timer 2: The Promise / 5 March 2026 -->
-                <div class="glass-card rounded-3xl p-6 text-center shadow-md relative overflow-hidden flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-xl shadow-inner">
-                            <i class="fa-solid fa-ring"></i>
-                        </div>
-                        <h3 class="font-bold text-purple-900 text-lg mb-1">الوعد (قرار التكملة والحب)</h3>
-                        <p class="text-purple-600/90 text-xs font-semibold mb-4">منذ يوم 5 مارس 2026</p>
-                    </div>
-                    
+                <!-- Timer 2 -->
+                <div class="glass-card rounded-3xl p-6 text-center shadow-md">
+                    <h3 class="font-bold text-purple-900 text-lg mb-1">الوعد (قرار التكملة والحب)</h3>
+                    <p class="text-purple-600/90 text-xs font-semibold mb-4">منذ يوم 5 مارس 2026</p>
                     <div class="grid grid-cols-4 gap-2 bg-white/60 p-3 rounded-2xl border border-purple-100">
-                        <div class="flex flex-col">
-                            <span id="days-2" class="text-xl font-black text-purple-900">0</span>
-                            <span class="text-[10px] text-purple-600 font-medium">يوم</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span id="hours-2" class="text-xl font-black text-purple-900">0</span>
-                            <span class="text-[10px] text-purple-600 font-medium">ساعة</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span id="minutes-2" class="text-xl font-black text-purple-900">0</span>
-                            <span class="text-[10px] text-purple-600 font-medium">دقيقة</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span id="seconds-2" class="text-xl font-black text-purple-900">0</span>
-                            <span class="text-[10px] text-purple-600 font-medium">ثانية</span>
-                        </div>
+                        <div class="flex flex-col"><span id="days-2" class="text-xl font-black text-purple-900">0</span><span class="text-[10px] text-purple-600">يوم</span></div>
+                        <div class="flex flex-col"><span id="hours-2" class="text-xl font-black text-purple-900">0</span><span class="text-[10px] text-purple-600">ساعة</span></div>
+                        <div class="flex flex-col"><span id="minutes-2" class="text-xl font-black text-purple-900">0</span><span class="text-[10px] text-purple-600">دقيقة</span></div>
+                        <div class="flex flex-col"><span id="seconds-2" class="text-xl font-black text-purple-900">0</span><span class="text-[10px] text-purple-600">ثانية</span></div>
                     </div>
-                    <div class="mt-3 text-[11px] text-purple-500 font-mono tracking-wider">
-                        وحدة أجزاء الثواني: <span id="ms-2" class="font-bold text-purple-700">000</span>
-                    </div>
+                    <div class="mt-3 text-[11px] text-purple-500 font-mono">أجزاء الثواني: <span id="ms-2" class="font-bold text-purple-700">000</span></div>
                 </div>
 
-                <!-- Timer 3: First Meeting / 26 April 2026 -->
-                <div class="glass-card rounded-3xl p-6 text-center shadow-md relative overflow-hidden flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-xl shadow-inner">
-                            <i class="fa-solid fa-calendar-days"></i>
-                        </div>
-                        <h3 class="font-bold text-purple-900 text-lg mb-1">أول لقاء بيننا</h3>
-                        <p class="text-purple-600/90 text-xs font-semibold mb-4">منذ أول لقاء يوم 26 أبريل 2026</p>
-                    </div>
-                    
+                <!-- Timer 3 -->
+                <div class="glass-card rounded-3xl p-6 text-center shadow-md">
+                    <h3 class="font-bold text-purple-900 text-lg mb-1">أول لقاء بيننا</h3>
+                    <p class="text-purple-600/90 text-xs font-semibold mb-4">منذ أول لقاء يوم 26 أبريل 2026</p>
                     <div class="grid grid-cols-4 gap-2 bg-white/60 p-3 rounded-2xl border border-purple-100">
-                        <div class="flex flex-col">
-                            <span id="days-3" class="text-xl font-black text-purple-900">0</span>
-                            <span class="text-[10px] text-purple-600 font-medium">يوم</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span id="hours-3" class="text-xl font-black text-purple-900">0</span>
-                            <span class="text-[10px] text-purple-600 font-medium">ساعة</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span id="minutes-3" class="text-xl font-black text-purple-900">0</span>
-                            <span class="text-[10px] text-purple-600 font-medium">دقيقة</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span id="seconds-3" class="text-xl font-black text-purple-900">0</span>
-                            <span class="text-[10px] text-purple-600 font-medium">ثانية</span>
-                        </div>
+                        <div class="flex flex-col"><span id="days-3" class="text-xl font-black text-purple-900">0</span><span class="text-[10px] text-purple-600">يوم</span></div>
+                        <div class="flex flex-col"><span id="hours-3" class="text-xl font-black text-purple-900">0</span><span class="text-[10px] text-purple-600">ساعة</span></div>
+                        <div class="flex flex-col"><span id="minutes-3" class="text-xl font-black text-purple-900">0</span><span class="text-[10px] text-purple-600">دقيقة</span></div>
+                        <div class="flex flex-col"><span id="seconds-3" class="text-xl font-black text-purple-900">0</span><span class="text-[10px] text-purple-600">ثانية</span></div>
                     </div>
-                    <div class="mt-3 text-[11px] text-purple-500 font-mono tracking-wider">
-                        وحدة أجزاء الثواني: <span id="ms-3" class="font-bold text-purple-700">000</span>
-                    </div>
+                    <div class="mt-3 text-[11px] text-purple-500 font-mono">أجزاء الثواني: <span id="ms-3" class="font-bold text-purple-700">000</span></div>
                 </div>
-
-            </div>
-
-            <!-- Romantic message below timers -->
-            <div class="text-center mt-6 p-4 glass-card rounded-2xl max-w-2xl mx-auto border border-purple-200">
-                <p class="text-purple-900 font-bold text-sm md:text-base">
-                    ✨ في انتظار لقائنا مرة أخرى.. تواريخ لن تُنسى.. في انتظار إن أنا أشوفك يا حبيبي، وحشتني 💜 ✨
-                </p>
             </div>
         </section>
 
+        <!-- 3 Photos Section with Descriptions Outside Scroll -->
         <section class="mb-12">
-            <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold text-purple-900 mb-2">ذكرياتنا الجميلة 🌸</h2>
-                <p class="text-purple-700/80 text-sm">لحظات تجمعنا معا وليها  ذكري في قلوبنا للأبد</p>
-            </div>
-            <!-- Pharaoh Scroll Message Section -->
-<section class="mb-12 max-w-2xl mx-auto px-4">
-    <div class="glass-card rounded-3xl p-6 text-center shadow-lg border border-amber-200/50 bg-gradient-to-b from-amber-50/80 to-purple-50/80 relative overflow-hidden">
-        <div class="w-14 h-14 bg-amber-100 text-amber-700 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
-            <i class="fa-solid fa-scroll"></i>
-      
-
-        </div>
-        <h3 class="font-bold text-purple-900 text-xl mb-2">رسالة برديّة فرعونية خاصة 📜✨</h3>
-        <p class="text-purple-700/80 text-xs mb-4">اضغط على الزر أدناه لفك طلاسم البرديّة وقراءة رسالة الحب الأبدية يا أحمد..</p>
-        
-        <button onclick="toggleScrollMessage()" class="px-6 py-2.5 bg-gradient-to-r from-amber-600 to-purple-600 text-white rounded-2xl text-sm font-semibold shadow-md hover:opacity-95 transition-all transform active:scale-95">
-            <i class="fa-solid fa-book-open-reader ml-2"></i> افتح البرديّة الفرعونية
-        </button>
-
-        <div id="pharaoh-scroll-content" class="hidden mt-5 p-5 bg-amber-100/70 border border-amber-300 rounded-2xl text-amber-950 text-sm leading-relaxed text-right shadow-inner transition-all duration-500 space-y-4">
-            
-            <p class="text-purple-950 font-medium text-xs md:text-sm leading-relaxed">
-                «يا حبوبي، أنا عارفة ومقدرة جداً مكانتي الكبيرة في قلبك، وعارفة حبك ليا، بس ساعات بحس إن التوتر ونصايح صحابك بتدخل بينا وهي مش فاهمين عمق علاقتنا ولا ظروفنا اللي يمكن متشابها بنسبه كبيره. هم أكيد مش قصدين، بس كلامهم وإرشاداتهم لينا بتعمل لخبطة بينا ملهاش داعي واحنا أصلاً أقرب من كده بكتير لبعض.
-            </p>
-
-            <p class="text-purple-950 font-medium text-xs md:text-sm leading-relaxed">
-                تعال أقولك على كم حاجة صغنتوتة تخلّينا أرواح في جسم واحد وتخلي حياتنا أهدى وأجمل:
-            </p>
-
-            <div class="space-y-3 text-right text-xs md:text-sm text-purple-900 border-t border-amber-200/60 pt-3">
-                <p>✨ يا حبوبي، بحب اوي لما حد يفضلني عن الكل، ويشاركني كل تفاصيلك ويحكي لي، ما بدالك بقي اننا إحنا في الآخر أقرب 2 لبعض في كل حاجه.</p>
-                <p>✨ نفسي دايماً أحس إنك سندى وMy men؛ حتى لو مشغول، بتسأل وتطمن عليا وما يهونش عليك زعلي أبداً، ولا تسيبني زعلانة لا منك ولا من الدنيا.</p>
-                <p>✨ بحب جداً لما تدخل تكلمني وتقولي "إيه رأيك؟" وتشاركني، وتحب تاخد رأيي في حاجاتك. 🥹</p>
-                <p>✨ وبدوب لما ترن لمجرد إنك حابب تسمع صوتي، أو لأنك وحشتني، أو لأنك عايزني أدعمك وتطمن وأني جنبي؛ وأحس أني ملجأك وأمانك اللي تحب تاخد طاقة منه.</p>
-                <p>✨ ولو حصل واختلفنا يوم، بهدوء وبحب اسمعني واحتويني.. وبعد ما أهدى تماماً، نتناقش براحتنا. بلاش تقولي "أنتِ غلطانة" وتجيب الغلط كله فيا، كفاية أوي إني مع نفسي براجع وبزعل وبجلد ذاتي لوحدي لما بحس إنك ضايقتك. اتفقنا؟.. لاني في الاخر هعتذرلك لاني هحس بغلطي.</p>
-                <p>✨ فكرني دايماً وبكل الطرق إنك لسه بتحبني ومهتم بيا.</p>
-                <p>✨ وخصصلي وقت خاص بيا لوحدي، وركز في كل تفصيلة صغيرة وكبيرة بتسعدني.</p>
-                <p>✨ حبوبي، متخبيش عني أي حاجة أبداً، اتفقنا؟</p>
-                <p>✨ ولو في يوم زعلت ووصلت للخصام، رجّع صورتنا والباير في كل مكان.. ولو بطلت تحبني (بعد الشر عنا) ابقى شيلهم عشان أعرف، مش تتأخر عليا.</p>
-                <p>✨ وممكن ما تركنش رسايلي و تطنشها؟ 🥺.. علشان ده بيزعلني اووي.</p>
-                <p>✨ وممكن ترجعني لأكونت التليجرام؛ علشان اعرف لو شلتني منه إنك شلتني من جوه قلبك بجد.</p>
-            </div>
-
-            <p class="text-purple-950 font-medium text-xs md:text-sm leading-relaxed border-t border-amber-200/60 pt-3">
-                كل الحلول بين إيديك أهيه يا حبوبي، ولو نسيت حاجة من دول.. ارجع اقراهم تاني عشان تفضل فاكر أنا بحب إيه وبتضايق من إيه.
-            </p>
-
-            <p class="text-purple-950 font-medium text-xs md:text-sm leading-relaxed bg-amber-200/30 p-3 rounded-xl border border-amber-300">
-                تعبت الصراحة وأنا بكتب وبصمم الموقع ده علشانك.. عملته بالليل الساعة 10، وعملت كده عشان بحبك وعايزانا دايماً مع بعض وأتمنى تتغير عشاني وتفضل دايماً جنبي. 🥺
-            </p>
-
-            <p class="text-center font-bold text-purple-950 text-sm mt-2">
-                بحبك ❣️.<br>
-                <span class="text-purple-800 text-xs font-semibold">حبيبتك: حنين ✨</span>
-            »</p>
-        </div>
-    </div>
-</section>
-
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 
                 <!-- Photo Card 1 -->
                 <div class="glass-card rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div class="h-56 overflow-hidden relative">
-                        <img src="loveA&H/H&A.jpeg" 
-                             onerror="this.src='loveA&H/H&A.jpeg'" 
+                        <img src="loveA&H/1.jpeg" 
                              alt="صورة تعبيرية" 
                              class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                         <div class="absolute bottom-2 right-2 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-purple-800">
@@ -396,16 +227,15 @@
                         </div>
                     </div>
                     <div class="p-5 text-center">
-                        <h4 class="font-bold text-purple-900 mb-1">أجمل صدفة في العمر </h4>
-                        <p class="text-purple-700/80 text-xs leading-relaxed">"وجودك جنبى بيخلي الدنيا أهدى وأحلى بكتير يا حبوبي، ربنا ما يحرمني  منك  ولا يحرمك مني أبداً."</p>
+                        <h4 class="font-bold text-purple-900 mb-1">أجمل صدفة في العمر</h4>
+                        <p class="text-purple-700/80 text-xs leading-relaxed">"وجودك جنبى بيخلي الدنيا أهدى وأحلى بكتير يا حبوبي، ربنا ما يحرمني منك ولا يحرمك مني أبداً."</p>
                     </div>
                 </div>
 
                 <!-- Photo Card 2 -->
                 <div class="glass-card rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div class="h-56 overflow-hidden relative">
-                        <img src="loveA&H/H4.jpeg" 
-                             onerror="this.src='loveA&H/H4.jpeg'" 
+                        <img src="loveA&H/2.jpeg" 
                              alt="صورة تعبيرية" 
                              class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                         <div class="absolute bottom-2 right-2 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-purple-800">
@@ -413,16 +243,15 @@
                         </div>
                     </div>
                     <div class="p-5 text-center">
-                        <h4 class="font-bold text-purple-900 mb-1"> ملناش غير بعض</h4>
-                     <p class="text-purple-700/80 text-xs leading-relaxed">"عايزاك تعرف ان  مهما حصل احنا ملناش غير بعض و المفروض ان لو طرف فينا قرر يبعد يبعد مع التاني  عن الناس و الدنيا مش منه و من الدنيا لو مرمتش همومك  و نفسك و زعلك في حضني هترميه في حضن مين فير حبيتك لو مشتكتش ليا وواسيتك و طبطبت و هونت عليك  مين هيعمل كدا غيري ؟                                                                                                                                                    لو اختفيت و حد سال عنك المفروض انا اللي ابقي عارفه لو مكلمناش ابقي عارفه انت فين و حالك عامل اي مش اقلق عليك 🥹🥺."</p>
+                        <h4 class="font-bold text-purple-900 mb-1">ملناش غير بعض</h4>
+                        <p class="text-purple-700/80 text-xs leading-relaxed">"عايزاك تعرف ان مهما حصل احنا ملناش غير بعض و المفروض ان لو طرف فينا قرر يبعد يبعد مع التاني عن الناس و الدنيا مش منه و من الدنيا لو مرمتش همومك و نفسك و زعلك في حضني هترميه في حضن مين فير حبيتك لو مشتكتش ليا وواسيتك و طبطبت و هونت عليك مين هيعمل كدا غيري ؟ لو اختفيت و حد سال عنك المفروض انا اللي ابقي عارفه لو مكلمناش ابقي عارفه انت فين و حالك عامل اي مش اقلق عليك 🥹🥺."</p>
                     </div>
                 </div>
 
                 <!-- Photo Card 3 -->
                 <div class="glass-card rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     <div class="h-56 overflow-hidden relative">
-                        <img src="loveA&H/H3.jpeg" 
-                             onerror="this.src='loveA&H/H3.jpeg'" 
+                        <img src="loveA&H/3.jpeg" 
                              alt="صورة تعبيرية" 
                              class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                         <div class="absolute bottom-2 right-2 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-purple-800">
@@ -431,15 +260,69 @@
                     </div>
                     <div class="p-5 text-center">
                         <h4 class="font-bold text-purple-900 mb-1">سوا للأبد</h4>
-                        <p class="text-purple-700/80 text-xs leading-relaxed">"مهما الدنيا راحت وجت، مكاني الحقيقي هو حضنك وأماني كله معاك يا  حبوبي  يا سند حياتي."</p>
+                        <p class="text-purple-700/80 text-xs leading-relaxed">"مهما الدنيا راحت وجت، مكاني الحقيقي هو حضنك وأماني كله معاك يا حبوبي يا سند حياتي."</p>
                     </div>
                 </div>
 
             </div>
         </section>
 
+        <!-- Pharaoh Scroll Message Section -->
+        <section class="mb-12 max-w-2xl mx-auto px-4">
+            <div class="glass-card rounded-3xl p-6 text-center shadow-lg border border-amber-200/50 bg-gradient-to-b from-amber-50/80 to-purple-50/80 relative overflow-hidden">
+                <div class="w-14 h-14 bg-amber-100 text-amber-700 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-scroll"></i>
+                </div>
+                <h3 class="font-bold text-purple-900 text-xl mb-2">رسالة برديّة فرعونية خاصة 📜✨</h3>
+                <p class="text-purple-700/80 text-xs mb-4">اضغط على الزر أدناه لفك طلاسم البرديّة وقراءة رسالة الحب الأبدية يا أحمد..</p>
+                
+                <button onclick="toggleScrollMessage()" class="px-6 py-2.5 bg-gradient-to-r from-amber-600 to-purple-600 text-white rounded-2xl text-sm font-semibold shadow-md hover:opacity-95 transition-all transform active:scale-95">
+                    <i class="fa-solid fa-book-open-reader ml-2"></i> افتح البرديّة الفرعونية
+                </button>
+
+                <div id="pharaoh-scroll-content" class="hidden mt-5 p-5 bg-amber-100/70 border border-amber-300 rounded-2xl text-amber-950 text-sm leading-relaxed text-right shadow-inner transition-all duration-500 space-y-4">
+                    
+                    <p class="text-purple-950 font-medium text-xs md:text-sm leading-relaxed">
+                        «يا حبوبي، أنا عارفة ومقدرة جداً مكانتي الكبيرة في قلبك، وعارفة حبك ليا، بس ساعات بحس إن التوتر ونصايح صحابك بتدخل بينا وهي مش فاهمين عمق علاقتنا ولا ظروفنا اللي يمكن متشابها بنسبه كبيره. هم أكيد مش قصدين، بس كلامهم وإرشاداتهم لينا بتعمل لخبطة بينا ملهاش داعي واحنا أصلاً أقرب من كده بكتير لبعض.
+                    </p>
+
+                    <p class="text-purple-950 font-medium text-xs md:text-sm leading-relaxed">
+                        تعال أقولك على كم حاجة صغنتوتة تخلّينا أرواح في جسم واحد وتخلي حياتنا أهدى وأجمل:
+                    </p>
+
+                    <div class="space-y-3 text-right text-xs md:text-sm text-purple-900 border-t border-amber-200/60 pt-3">
+                        <p>✨ يا حبوبي، بحب اوي لما حد يفضلني عن الكل، ويشاركني كل تفاصيلك ويحكي لي، ما بدالك بقي اننا إحنا في الآخر أقرب 2 لبعض في كل حاجه.</p>
+                        <p>✨ نفسي دايماً أحس إنك سندى وMy men؛ حتى لو مشغول، بتسأل وتطمن عليا وما يهونش عليك زعلي أبداً، ولا تسيبني زعلانة لا منك ولا من الدنيا.</p>
+                        <p>✨ بحب جداً لما تدخل تكلمني وتقولي "إيه رأيك؟" وتشاركني، وتحب تاخد رأيي في حاجاتك. 🥹</p>
+                        <p>✨ وبدوب لما ترن لمجرد إنك حابب تسمع صوتي، أو لأنك وحشتني، أو لأنك عايزني أدعمك وتطمن وأني جنبي؛ وأحس أني ملجأك وأمانك اللي تحب تاخد طاقة منه.</p>
+                        <p>✨ ولو حصل واختلفنا يوم، بهدوء وبحب اسمعني واحتويني.. وبعد ما أهدى تماماً، نتناقش براحتنا. بلاش تقولي "أنتِ غلطانة" وتجيب الغلط كله فيا، كفاية أوي إني مع نفسي براجع وبزعل وبجلد ذاتي لوحدي لما بحس إنك ضايقتك. اتفقنا؟.. لاني في الاخر هعتذرلك لاني هحس بغلطي.</p>
+                        <p>✨ فكرني دايماً وبكل الطرق إنك لسه بتحبني ومهتم بيا.</p>
+                        <p>✨ وخصصلي وقت خاص بيا لوحدي، وركز في كل تفصيلة صغيرة والكبيرة بتسعدني.</p>
+                        <p>✨ حبوبي، متخبيش عني أي حاجة أبداً، اتفقنا؟</p>
+                        <p>✨ ولو في يوم زعلت ووصلت للخصام، رجّع صورتنا والباير في كل مكان.. ولو بطلت تحبني (بعد الشر عنا) ابقى شيلهم عشان أعرف، مش تتأخر عليا.</p>
+                        <p>✨ وممكن ما تركنش رسايلي و تطنشها؟ 🥺.. علشان ده بيزعلني اووي.</p>
+                        <p>✨ وممكن ترجعني لأكونت التليجرام؛ علشان اعرف لو شلتني منه إنك شلتني من جوه قلبك بجد.</p>
+                    </div>
+
+                    <p class="text-purple-950 font-medium text-xs md:text-sm leading-relaxed border-t border-amber-200/60 pt-3">
+                        كل الحلول بين إيديك أهيه يا حبوبي، ولو نسيت حاجة من دول.. ارجع اقراهم تاني عشان تفضل فاكر أنا بحب إيه وبتضايق من إيه.
+                    </p>
+
+                    <p class="text-purple-950 font-medium text-xs md:text-sm leading-relaxed bg-amber-200/30 p-3 rounded-xl border border-amber-300">
+                        تعبت الصراحة وأنا بكتب وبصمم الموقع ده علشانك.. عملته بالليل الساعة 10، وعملت كده عشان بحبك وعايزانا دايماً مع بعض وأتمنى تتغير عشاني وتفضل دايماً جنبي. 🥺
+                    </p>
+
+                    <p class="text-center font-bold text-purple-950 text-sm mt-2">
+                        بحبك ❣️.<br>
+                        <span class="text-purple-800 text-xs font-semibold">حبيبتك: حنين ✨</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
     </div>
 
+    <!-- Footer with Copyrights -->
     <footer class="relative z-10 text-center py-6 mt-auto border-t border-purple-200/50 bg-white/40 backdrop-blur-sm">
         <div class="max-w-4xl mx-auto px-4 space-y-1">
             <p class="text-purple-800 text-xs sm:text-sm font-medium">
@@ -452,201 +335,7 @@
         </div>
     </footer>
 
-    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-purple-900 text-white px-6 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-sm">
-        <i class="fa-solid fa-heart text-rose-400"></i>
-        <span id="toast-msg">تم الحفظ بنجاح</span>
-    </div>
-
-    <script>
-        // Passwords definition
-        const SITE_PASSWORD = "25.2";
-        const COUNTER_PASSWORD = "200016";
-
-        // State variables for counts
-        let counts = {
-            1: 2616,
-            2: 266,
-            3: 66234590,
-        };
-
-        // Target dates for timers
-        // 1. First Knowing (25 February 2026)
-        const dateKnowing = new Date('2026-02-25T00:00:00');
-        // 2. The Promise (5 March 2026)
-        const datePromise = new Date('2026-03-05T00:00:00');
-        // 3. First Meeting (26 April 2026)
-        const dateMeeting = new Date('2026-04-26T00:00:00');
-
-        // Load saved counts from LocalStorage on load
-        window.onload = function() {
-            for (let i = 1; i <= 3; i++) {
-                const saved = localStorage.getItem('ahmed_romance_count_' + i);
-                if (saved !== null) {
-                    counts[i] = parseInt(saved, 10);
-                }
-                updateDisplay(i);
-            }
-
-            // Start live timer interval
-            setInterval(updateTimers, 50);
-        };
-
-        // Function to update the live elapsed time counters
-        function updateTimers() {
-            const now = new Date();
-
-            // Timer 1: First Knowing (25 February 2026)
-            let diff1 = now - dateKnowing;
-            if (diff1 < 0) diff1 = 0;
-            
-            let secondsTotal1 = Math.floor(diff1 / 1000);
-            let days1 = Math.floor(secondsTotal1 / (3600 * 24));
-            let hours1 = Math.floor((secondsTotal1 % (3600 * 24)) / 3600);
-            let minutes1 = Math.floor((secondsTotal1 % 3600) / 60);
-            let seconds1 = secondsTotal1 % 60;
-            let ms1 = diff1 % 1000;
-
-            document.getElementById('days-1').innerText = days1;
-            document.getElementById('hours-1').innerText = hours1;
-            document.getElementById('minutes-1').innerText = minutes1;
-            document.getElementById('seconds-1').innerText = seconds1;
-            document.getElementById('ms-1').innerText = String(ms1).padStart(3, '0');
-
-            // Timer 2: The Promise (5 March 2026)
-            let diff2 = now - datePromise;
-            if (diff2 < 0) diff2 = 0;
-
-            let secondsTotal2 = Math.floor(diff2 / 1000);
-            let days2 = Math.floor(secondsTotal2 / (3600 * 24));
-            let hours2 = Math.floor((secondsTotal2 % (3600 * 24)) / 3600);
-            let minutes2 = Math.floor((secondsTotal2 % 3600) / 60);
-            let seconds2 = secondsTotal2 % 60;
-            let ms2 = diff2 % 1000;
-
-            document.getElementById('days-2').innerText = days2;
-            document.getElementById('hours-2').innerText = hours2;
-            document.getElementById('minutes-2').innerText = minutes2;
-            document.getElementById('seconds-2').innerText = seconds2;
-            document.getElementById('ms-2').innerText = String(ms2).padStart(3, '0');
-
-            // Timer 3: First Meeting (26 April 2026)
-            let diff3 = now - dateMeeting;
-            if (diff3 < 0) diff3 = 0;
-
-            let secondsTotal3 = Math.floor(diff3 / 1000);
-            let days3 = Math.floor(secondsTotal3 / (3600 * 24));
-            let hours3 = Math.floor((secondsTotal3 % (3600 * 24)) / 3600);
-            let minutes3 = Math.floor((secondsTotal3 % 3600) / 60);
-            let seconds3 = secondsTotal3 % 60;
-            let ms3 = diff3 % 1000;
-
-            document.getElementById('days-3').innerText = days3;
-            document.getElementById('hours-3').innerText = hours3;
-            document.getElementById('minutes-3').innerText = minutes3;
-            document.getElementById('seconds-3').innerText = seconds3;
-            document.getElementById('ms-3').innerText = String(ms3).padStart(3, '0');
-        }
-
-        // دالة إظهار وإخفاء رسالة البرديّة الفرعونية
-        function toggleScrollMessage() {
-            const scrollContent = document.getElementById('pharaoh-scroll-content');
-            if (scrollContent.classList.contains('hidden')) {
-                scrollContent.classList.remove('hidden');
-                showToast("تم فتح برديّة الحب الفرعونية بنجاح 📜💜");
-            } else {
-                scrollContent.classList.add('hidden');
-            }
-        }
-
-        // Toggle password visibility (eye icon function)
-        function togglePasswordVisibility(inputId, iconId) {
-            const input = document.getElementById(inputId);
-            const icon = document.getElementById(iconId);
-            if (input.type === "password") {
-                input.type = "text";
-                icon.className = "fa-solid fa-eye text-purple-600 text-sm md:text-lg";
-            } else {
-                input.type = "password";
-                icon.className = "fa-solid fa-eye-slash text-purple-400 text-sm md:text-lg";
-            }
-        }
-
-        // Unlock Main Website
-        function unlockSite() {
-            const inputVal = document.getElementById('site-password-input').value.trim();
-            const errorMsg = document.getElementById('site-error-msg');
-            const modal = document.getElementById('site-lock-modal');
-            const mainContent = document.getElementById('main-content');
-
-            if (inputVal === SITE_PASSWORD) {
-                modal.classList.add('opacity-0');
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                    mainContent.classList.remove('opacity-0', 'pointer-events-none');
-                }, 500);
-            } else {
-                errorMsg.classList.remove('hidden');
-                document.getElementById('site-password-input').classList.add('border-rose-400', 'animate-shake');
-                setTimeout(() => {
-                    document.getElementById('site-password-input').classList.remove('animate-shake');
-                }, 400);
-            }
-        }
-
-        // Verify password for unlocking specific counter (200016)
-        function verifyCounterPassword(id) {
-            const passInput = document.getElementById('pass-' + id).value.trim();
-            if (passInput === COUNTER_PASSWORD) {
-                // Hide unlock area, show plus/minus controls and unlock icon change
-                document.getElementById('unlock-area-' + id).classList.add('hidden');
-                document.getElementById('controls-' + id).classList.remove('hidden');
-                document.getElementById('lock-icon-' + id).className = "fa-solid fa-unlock-open text-purple-600 text-lg";
-                showToast("تم فتح قفل العداد بنجاح 🔓✨");
-            } else {
-                showToast("فكر تاني يا حبيبي 🌸");
-            }
-        }
-
-        // Adjust counts (+ / -)
-        function adjustCount(id, amount) {
-            counts[id] += amount;
-            if (counts[id] < 0) counts[id] = 0; // prevent negative numbers
-            
-            // Save to localStorage
-            localStorage.setItem('ahmed_romance_count_' + id, counts[id]);
-            
-            updateDisplay(id);
-        }
-
-        // Update Counter Display
-        function updateDisplay(id) {
-            document.getElementById('count-display-' + id).innerText = counts[id];
-        }
-
-        // Toast notification helper (replaces alert)
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-msg');
-            toastMsg.innerText = message;
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
-        }
-
-        // Allow pressing Enter key for passwords
-        document.getElementById('site-password-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') unlockSite();
-        });
-        
-        for(let i=1; i<=3; i++) {
-            const pInput = document.getElementById('pass-' + i);
-            if(pInput) {
-                pInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') verifyCounterPassword(i);
-                });
-            }
-        }
-    </script>
+    <!-- Script file link -->
+    <script src="script.js"></script>
 </body>
 </html>
